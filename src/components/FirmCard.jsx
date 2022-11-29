@@ -9,7 +9,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import { btnHoverStyle } from "../styles/globalStyle";
 import useStockCalls from "../hooks/useStockCalls";
 
-export default function FirmCard({ firm }) {
+export default function FirmCard({ firm, setOpen, setInfo }) {
   const { deleteFirm } = useStockCalls();
   return (
     <Card sx={{ maxWidth: 345 }}>
@@ -18,7 +18,7 @@ export default function FirmCard({ firm }) {
         alt="firm image"
         height="140"
         image={firm?.image}
-        sx={{p:1, objectFit:"contain"}}
+        sx={{ p: 1, objectFit: "contain" }}
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">
@@ -29,7 +29,13 @@ export default function FirmCard({ firm }) {
         </Typography>
       </CardContent>
       <CardActions sx={{ display: "flex", justifyContent: "center" }}>
-        <EditIcon sx={btnHoverStyle} />
+        <EditIcon
+          sx={btnHoverStyle}
+          onClick={() => {
+            setOpen(true);
+            setInfo(firm);
+          }}
+        />
         <DeleteIcon sx={btnHoverStyle} onClick={() => deleteFirm(firm?.id)} />
       </CardActions>
     </Card>
