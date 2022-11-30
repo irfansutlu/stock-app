@@ -1,11 +1,11 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 import Modal from "@mui/material/Modal";
-import { flexColumn, modalStyle } from "../../styles/globalStyle";
-import { Button, TextField } from "@mui/material";
+import { flexCenter, modalStyle } from "../../styles/globalStyle";
+import { Button, MenuItem, Select, TextField } from "@mui/material";
 import useStockCalls from "../../hooks/useStockCalls";
 
-export default function FirmModal({ open, setOpen, info, setInfo }) {
+export default function ProductTable({ open, setOpen, info, setInfo }) {
   const { postFirm, putFirm } = useStockCalls();
 
   const handleSubmit = (e) => {
@@ -35,28 +35,17 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
         aria-describedby="modal-modal-description"
       >
         <Box sx={modalStyle}>
-          <Box component="form" onSubmit={handleSubmit} sx={flexColumn}>
-            <TextField
-              label="Firm Name"
-              name="name"
-              id="name"
-              type="text"
-              variant="outlined"
-              required
-              value={info?.name || ""}
+          <Box component="form" onSubmit={handleSubmit} sx={flexCenter}>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              label="Age"
               onChange={handleChange}
-            />
-
-            <TextField
-              label="Phone"
-              name="phone"
-              id="phone"
-              type="tel"
-              required
-              variant="outlined"
-              value={info?.phone || ""}
-              onChange={handleChange}
-            />
+            >
+              <MenuItem value={10}>Ten</MenuItem>
+              <MenuItem value={20}>Twenty</MenuItem>
+              <MenuItem value={30}>Thirty</MenuItem>
+            </Select>
 
             <TextField
               label="Address"
@@ -68,17 +57,17 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               value={info?.address || ""}
               onChange={handleChange}
             />
-
             <TextField
-              label="Image"
-              name="image"
-              id="image"
-              type="url"
-              required
+              label="Product Name"
+              name="name"
+              id="name"
+              type="text"
               variant="outlined"
-              value={info?.image || ""}
+              required
+              value={info?.name || ""}
               onChange={handleChange}
             />
+
             <Button type="submit" variant="contained">
               Submit Firm
             </Button>

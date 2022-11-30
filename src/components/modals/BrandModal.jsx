@@ -5,15 +5,15 @@ import { flexColumn, modalStyle } from "../../styles/globalStyle";
 import { Button, TextField } from "@mui/material";
 import useStockCalls from "../../hooks/useStockCalls";
 
-export default function FirmModal({ open, setOpen, info, setInfo }) {
-  const { postFirm, putFirm } = useStockCalls();
+export default function BrandModal({ open, setOpen, info, setInfo }) {
+  const { postBrand, putBrand } = useStockCalls();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (info.id) {
-      putFirm(info);
+      putBrand(info);
     } else {
-      postFirm(info);
+      postBrand(info);
     }
     setOpen(false);
     setInfo({});
@@ -37,35 +37,13 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
         <Box sx={modalStyle}>
           <Box component="form" onSubmit={handleSubmit} sx={flexColumn}>
             <TextField
-              label="Firm Name"
+              label="Brand Name"
               name="name"
               id="name"
               type="text"
               variant="outlined"
               required
               value={info?.name || ""}
-              onChange={handleChange}
-            />
-
-            <TextField
-              label="Phone"
-              name="phone"
-              id="phone"
-              type="tel"
-              required
-              variant="outlined"
-              value={info?.phone || ""}
-              onChange={handleChange}
-            />
-
-            <TextField
-              label="Address"
-              name="address"
-              id="address"
-              type="text"
-              required
-              variant="outlined"
-              value={info?.address || ""}
               onChange={handleChange}
             />
 
@@ -80,7 +58,7 @@ export default function FirmModal({ open, setOpen, info, setInfo }) {
               onChange={handleChange}
             />
             <Button type="submit" variant="contained">
-              Submit Firm
+              Save Brand
             </Button>
           </Box>
         </Box>

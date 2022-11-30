@@ -15,9 +15,16 @@ export const modalStyle = {
   p: 4,
 };
 
-export const flexCenter = {
+export const flexColumn = {
   display:"flex",
   flexDirection:"column",
   gap:2,
   alignItems:"center"
 }
+
+export const flexRow = {
+  display: "flex",
+  flexDirection: "row",
+  gap: 2,
+  justifyContent: "center",
+};
